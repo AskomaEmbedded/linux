@@ -57,6 +57,9 @@
 #define DP83822_WOL_INT_EN	BIT(4)
 #define DP83822_WOL_INT_STAT	BIT(12)
 
+/* Strap Register */
+#define MII_DP83822_SOR1	0x0467
+
 #define MII_DP83822_RXSOP1	0x04a5
 #define	MII_DP83822_RXSOP2	0x04a6
 #define	MII_DP83822_RXSOP3	0x04a7
@@ -257,6 +260,9 @@ static int dp83822_config_intr(struct phy_device *phydev)
 static int dp83822_config_init(struct phy_device *phydev)
 {
 	int value;
+
+	value = phy_read_mmd(phydev, DP83822_DEVADDR, MII_DP83822_SOR1);
+	netdev_info(phydev->attached_dev, "SOR1 strap register: 0x%x\n", value);
 
 	value = DP83822_WOL_MAGIC_EN | DP83822_WOL_SECURE_ON | DP83822_WOL_EN;
 
