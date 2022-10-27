@@ -485,6 +485,12 @@ static int dp83822_phy_reset(struct phy_device *phydev)
 	if (err < 0)
 		return err;
 
+	err = phy_read_mmd(phydev, DP83822_DEVADDR, MII_DP83822_SOR1);
+	if (err < 0)
+		return err;
+
+	phydev_info(phydev, "SOR1 strap register: 0x%04x\n", err);
+
 	return phydev->drv->config_init(phydev);
 }
 
