@@ -25,6 +25,13 @@
 		enable-active-high;
 		regulator-always-on;
 	};
+
+	reg_vref_2v5: regulator-vref-2v5 {
+		compatible = "regulator-fixed";
+		regulator-name = "vref-25v";
+		regulator-min-microvolt = <2500000>;
+		regulator-max-microvolt = <2500000>;
+	};
 };
 
 &fec1 {
@@ -43,6 +50,16 @@
 			reset-assert-us = <100>;
 			reset-gpios = <&gpio3 22 GPIO_ACTIVE_LOW>;
 		};
+	};
+};
+
+
+&i2c1 {
+	dac@c {
+		compatible = "adi,ad5337r";
+		reg = <0xc>;
+		#io-channel-cells = <0>;
+		vcc-supply = <&reg_vref_2v5>;
 	};
 };
 
