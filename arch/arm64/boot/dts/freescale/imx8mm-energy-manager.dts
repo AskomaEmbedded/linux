@@ -6,7 +6,7 @@
 /dts-v1/;
 
 #include "imx8mm-kontron-n801x-som.dtsi"
-
+#include <dt-bindings/leds/common.h>
 / {
 	model = "Askoma i.MX8MM Energy Manager 2.0";
 	compatible = "askoma,imx8mm-energy-manager", "kontron,imx8mm-n801x-som", "fsl,imx8mm";
@@ -14,6 +14,41 @@
 	aliases {
 		mmc0 = &usdhc1;
 		mmc1 = &usdhc2;
+	};
+
+	led-controller {
+		compatible = "gpio-leds";
+		pinctrl-names = "default";
+		pinctrl-0 = <&pinctrl_gpio_leds>;
+
+		led-0 {
+			function = LED_FUNCTION_STATUS;
+			color = <LED_COLOR_ID_RED>;
+			gpios = <&gpio4 15 GPIO_ACTIVE_HIGH>;
+			default-state = "on";
+			linux,default-trigger = "off";
+		};
+
+		led-1 {
+			function = LED_FUNCTION_STATUS;
+			color = <LED_COLOR_ID_RED>;
+			gpios = <&gpio4 16 GPIO_ACTIVE_HIGH>;
+			default-state = "off";
+		};
+
+		led-2 {
+			function = LED_FUNCTION_STATUS;
+			color = <LED_COLOR_ID_GREEN>;
+			gpios = <&gpio4 17 GPIO_ACTIVE_HIGH>;
+			default-state = "off";
+		};
+
+		led-3 {
+			function = LED_FUNCTION_STATUS;
+			color = <LED_COLOR_ID_BLUE>;
+			gpios = <&gpio4 18 GPIO_ACTIVE_HIGH>;
+			default-state = "off";
+		};
 	};
 
 	reg_rst_eth2: regulator-rst-eth2 {
@@ -143,6 +178,15 @@
 			MX8MM_IOMUXC_ENET_RX_CTL_ENET1_RGMII_RX_CTL	0x91
 			MX8MM_IOMUXC_ENET_TX_CTL_ENET1_RGMII_TX_CTL	0x1f
 			MX8MM_IOMUXC_SAI5_RXD1_GPIO3_IO22		0x19
+		>;
+	};
+
+	pinctrl_gpio_leds: gpioledgrp {
+		fsl,pins = <
+			MX8MM_IOMUXC_SAI1_TXD3_GPIO4_IO15		0x19
+			MX8MM_IOMUXC_SAI1_TXD4_GPIO4_IO16		0x19
+			MX8MM_IOMUXC_SAI1_TXD5_GPIO4_IO17		0x19
+			MX8MM_IOMUXC_SAI1_TXD6_GPIO4_IO18		0x19
 		>;
 	};
 
