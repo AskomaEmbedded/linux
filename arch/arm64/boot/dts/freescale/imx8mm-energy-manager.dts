@@ -256,6 +256,16 @@
 		#io-channel-cells = <0>;
 		vcc-supply = <&reg_vref_2v5>;
 	};
+
+	pca9450: pmic@25 {
+		regulators {
+			reg_nvcc_sd: LDO5 {
+				regulator-name = "ldo5";
+				regulator-min-microvolt = <3300000>;
+				regulator-max-microvolt = <3300000>;
+			};
+		};
+	};
 };
 
 &i2c3 {
