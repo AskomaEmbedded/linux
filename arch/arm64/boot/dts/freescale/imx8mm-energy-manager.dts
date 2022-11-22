@@ -260,6 +260,7 @@
 			reg = <1>;
 			reset-assert-us = <100>;
 			reset-gpios = <&gpio3 22 GPIO_ACTIVE_LOW>;
+			max-speed = <100>;
 		};
 	};
 };
