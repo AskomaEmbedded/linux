@@ -333,6 +333,8 @@
 	pinctrl-names = "default";
 	pinctrl-0 = <&pinctrl_uart2>;
 	rts-gpios = <&gpio4 30 GPIO_ACTIVE_HIGH>;
+	linux,rs485-enabled-at-boot-time;
+	rs485-rx-during-tx;
 	status = "okay";
 };
 
