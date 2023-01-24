@@ -12,6 +12,7 @@
 	compatible = "askoma,imx8mm-energy-manager", "kontron,imx8mm-n801x-som", "fsl,imx8mm";
 
 	aliases {
+		ethernet1 = &usbnet;
 		mmc0 = &usdhc1;
 		mmc1 = &usdhc2;
 	};
